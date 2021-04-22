@@ -10,6 +10,7 @@ public class UnitBrain : MonoBehaviour
     UnitMovement unitMovement;
 
     public enum targetingTypes { closest, furthest, value}
+    public enum state { retreat, attack, move}
     public targetingTypes targetingType;
     // Start is called before the first frame update
     void Start()
@@ -27,10 +28,25 @@ public class UnitBrain : MonoBehaviour
             Vector3 mouse = Input.mousePosition;
             unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
         }*/
+
+
         Transform target = ScanForEnemy();
         if (target != null)
         {
             unitMovement.target = (Vector2)target.position;
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0) && teamCode =="A")
+            {
+                Vector3 mouse = Input.mousePosition;
+                unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
+            }
+            else
+            {
+               // unitMovement.target = transform.position;
+            }
+            
         }
         
         
