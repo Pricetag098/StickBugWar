@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8453986525589847713}
   - component: {fileID: 8453986525589847712}
   - component: {fileID: 8453986525589847717}
-  m_Layer: 0
+  - component: {fileID: -4986397682918648025}
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,9 +102,14 @@ MonoBehaviour:
   teamCode: A
   viewRange: 2.45
   attackRange: 0.7
+  attackTime: 1
+  attackDamage: 1
   value: 0
   targetingType: 0
-  state: 0
+  whatIsUnit:
+    serializedVersion: 2
+    m_Bits: 64
+  state: 2
 --- !u!114 &8453986525589847713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,3 +162,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4986397682918648025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453986525589847715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ac848d75de44547bafe67782b3fa6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  maxHealth: 10
