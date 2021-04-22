@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class UnitBrain : MonoBehaviour
 {
+    public string teamCode;
+    public float viewRange = 1;
+    public int value;
     UnitMovement unitMovement;
+
+    public enum targetingTypes { closest, furthest, value}
+    public targetingTypes targetingType;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +21,68 @@ public class UnitBrain : MonoBehaviour
     void Update()
     {
         
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mouse = Input.mousePosition;
+            unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
+        }
+        
+    }
+
+    public Transform ScanForEnemy()
+    {
+        Collider2D[] results = Physics2D.OverlapCircleAll(transform.position, viewRange, LayerMask.NameToLayer("Unit"));
+        
+        List<UnitBrain> result = new List<UnitBrain>();
+
+        for (int x = 0; x < results.Length; x++)
+        {
+            if(result[x].GetComponent<UnitBrain>().teamCode != teamCode)
+            {
+                result.Add(results[x].GetComponent<UnitBrain>());
+            }
+        }
+
+
+        if (result.ToArray().Length > 0)
+        {
+            int bestTarget = 0;
+            for (int x = 0; x < result.ToArray().Length; x++)
+            {
+                ;
+                switch (targetingType)
+                {
+                    case targetingTypes.closest:
+                        {
+                            if (Vector2.Distance(result[x].transform.position, transform.position) < Vector2.Distance(result[bestTarget].transform.position, transform.position))
+                            {
+                                bestTarget = x;
+                            }
+                            break;
+                        }
+                    case targetingTypes.furthest:
+                        {
+                            if (Vector2.Distance(result[x].transform.position, transform.position) > Vector2.Distance(result[bestTarget].transform.position, transform.position))
+                            {
+                                bestTarget = x;
+                            }
+                            break;
+                        }
+                    case targetingTypes.value:
+                        {
+                            break;
+                        }
+
+                }
+            }
+            return result[bestTarget].transform;
+        }
+        else return null;
+        
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, viewRange);
     }
 }

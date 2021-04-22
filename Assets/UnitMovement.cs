@@ -25,5 +25,9 @@ public class UnitMovement : MonoBehaviour
         {
             rb.velocity = -((Vector2)transform.position- target).normalized * speed;
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 }
