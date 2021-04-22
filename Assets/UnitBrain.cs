@@ -20,12 +20,19 @@ public class UnitBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //temp
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouse = Input.mousePosition;
             unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
+        }*/
+        Transform target = ScanForEnemy();
+        if (target != null)
+        {
+            unitMovement.target = (Vector2)target.position;
         }
+        
         
     }
 
@@ -34,22 +41,24 @@ public class UnitBrain : MonoBehaviour
         Collider2D[] results = Physics2D.OverlapCircleAll(transform.position, viewRange, LayerMask.NameToLayer("Unit"));
         
         List<UnitBrain> result = new List<UnitBrain>();
-
-        for (int x = 0; x < results.Length; x++)
+        if (results.Length > 0)
         {
-            if(result[x].GetComponent<UnitBrain>().teamCode != teamCode)
+            for (int x = 0; x < results.Length; x++)
             {
-                result.Add(results[x].GetComponent<UnitBrain>());
+                if (results[x].GetComponent<UnitBrain>().teamCode != teamCode)
+                {
+                    result.Add(results[x].GetComponent<UnitBrain>());
+                }
             }
         }
-
+        
 
         if (result.ToArray().Length > 0)
         {
             int bestTarget = 0;
             for (int x = 0; x < result.ToArray().Length; x++)
             {
-                ;
+                
                 switch (targetingType)
                 {
                     case targetingTypes.closest:
@@ -77,8 +86,9 @@ public class UnitBrain : MonoBehaviour
             }
             return result[bestTarget].transform;
         }
-        else return null;
-        
+
+        return null;
+
     }
     private void OnDrawGizmos()
     {
