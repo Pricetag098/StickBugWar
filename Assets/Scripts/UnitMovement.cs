@@ -23,7 +23,8 @@ public class UnitMovement : MonoBehaviour
         
         if(Vector2.Distance(transform.position, target) > minDistance)
         {
-            rb.velocity = -((Vector2)transform.position- target).normalized * speed;
+
+            rb.velocity = -((Vector2)transform.position-target).normalized * speed;
         }
         else
         {

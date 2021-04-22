@@ -5,13 +5,19 @@ using UnityEngine;
 public class UnitBrain : MonoBehaviour
 {
     public string teamCode;
-    public float viewRange = 1;
+    public float viewRange = 1, attackRange = 1;
+
     public int value;
     UnitMovement unitMovement;
 
     public enum targetingTypes { closest, furthest, value}
-    public enum state { retreat, attack, move}
+    public enum states { idle, attack, move, retreat }
     public targetingTypes targetingType;
+    public states state;
+
+
+    Transform target;
+    Transform enemyTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,35 +25,75 @@ public class UnitBrain : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //temp
-        /*
-        if (Input.GetMouseButtonDown(0))
+        stateMachine();
+    }
+    void stateMachine()
+    {
+        switch (state)
         {
-            Vector3 mouse = Input.mousePosition;
-            unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
-        }*/
+            case states.idle:
+                {
+                    if(ScanForEnemy() != null)
+                    {
+                        state = states.move;
+                    }
+                    else
+                    {
+                        unitMovement.target = transform.position;
+                    }
+                    break;
+                }
 
 
-        Transform target = ScanForEnemy();
-        if (target != null)
-        {
-            unitMovement.target = (Vector2)target.position;
+
+            case states.attack:
+                {
+                    unitMovement.target = transform.position;
+                    break;
+                }
+
+
+
+            case states.retreat:
+                {
+                    break;
+                }
+
+
+
+            case states.move:
+                {
+                    target = ScanForEnemy();
+                    enemyTarget = target;
+                    if (target != null)
+                    {
+                        unitMovement.target = (Vector2)target.position;
+                        print(gameObject.name + "Distance to target:" + Vector2.Distance(target.position, transform.position));
+                        if (Physics2D.Raycast(transform.position, -(transform.position - enemyTarget.position).normalized,attackRange))
+                        {
+                            state = states.attack;
+                        }
+                    }
+                    else
+                    {
+                        if (Input.GetMouseButtonDown(0) && teamCode == "A")
+                        {
+                            Vector3 mouse = Input.mousePosition;
+                            unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
+
+                        }
+
+                    }
+                    
+
+                    break;
+                }
         }
-        else
-        {
-            if (Input.GetMouseButtonDown(0) && teamCode =="A")
-            {
-                Vector3 mouse = Input.mousePosition;
-                unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
-            }
-            else
-            {
-               // unitMovement.target = transform.position;
-            }
-            
-        }
+
+
+        
         
         
     }
@@ -110,5 +156,11 @@ public class UnitBrain : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, viewRange);
+        if(target != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position,transform.position+ -(transform.position - enemyTarget.position).normalized * attackRange);
+        }
+        
     }
 }
