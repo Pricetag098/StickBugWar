@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     public void onTakeDmg(float dmg)
     {
         health -= dmg;
-        if(health < 0) { onDeath(); }
+        if(health <= 0) { onDeath(); }
     }
     public void onDeath()
     {

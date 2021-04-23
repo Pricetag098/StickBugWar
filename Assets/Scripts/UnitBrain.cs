@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class UnitBrain : MonoBehaviour
 {
+
+    // setting the class automaticaly sets the values;
+    public enum Classes { knight,archer,scout,tank };
+    public Classes unitClass;
+
+
     [Header("Unit Values")]
    
     public string teamCode;
@@ -20,11 +26,48 @@ public class UnitBrain : MonoBehaviour
     float attackTimer = 0;
 
     UnitMovement unitMovement;
+    Health health;
     Transform target;
     // Start is called before the first frame update
     void Start()
     {
         unitMovement = GetComponent<UnitMovement>();
+        health = GetComponent<Health>();
+
+
+        switch (unitClass)
+        {
+            case Classes.knight:
+                {
+                    viewRange = 3;
+                    attackRange = 1;
+                    attackTime = 1;
+                    attackDamage = 1;
+                    health.maxHealth = 10;
+                    health.health = health.maxHealth;
+                    break;
+                }
+            case Classes.archer:
+                {
+                    viewRange = 3;
+                    attackRange = 1;
+                    attackTime = 1;
+                    attackDamage = 1;
+                    health.maxHealth = 5;
+                    health.health = health.maxHealth;
+                    break;
+                }
+            default:
+                {
+                    viewRange = 3;
+                    attackRange = 1;
+                    attackTime = 1;
+                    attackDamage = 1;
+                    health.maxHealth = 10;
+                    health.health = health.maxHealth;
+                    break;
+                }
+        }
     }
 
     // Update is called once per frame
@@ -139,6 +182,10 @@ public class UnitBrain : MonoBehaviour
 
                         }
 
+                    }
+                    if(Vector2.Distance(transform.position, unitMovement.target)< .1f )
+                    {
+                        state = states.idle;
                     }
                     
 
