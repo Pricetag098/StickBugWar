@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class UnitBrain : MonoBehaviour
 {
+    [Header("Unit Values")]
+   
     public string teamCode;
-    public float viewRange = 1, attackRange = 1;
-
+    public float viewRange = 1, attackRange = 1, attackTime = 1, attackDamage = 1;
     public int value;
-    UnitMovement unitMovement;
-
-    public enum targetingTypes { closest, furthest, value}
-    public enum states { idle, attack, move, retreat }
+    public enum targetingTypes { closest, furthest, value }
     public targetingTypes targetingType;
+
+    [Space(10)]
+    [Header("Individual Values")]
+    public LayerMask whatIsUnit;
+    public enum states { idle, attack, move, retreat }
     public states state;
+    float attackTimer = 0;
 
-
+    UnitMovement unitMovement;
     Transform target;
-    Transform enemyTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +32,15 @@ public class UnitBrain : MonoBehaviour
     {
         stateMachine();
     }
+
+
+
+
     void stateMachine()
     {
         switch (state)
         {
-            case states.idle:
+            case states.idle: //used when neither in combat or motion, will still detect and fight enemys if in proximity
                 {
                     if(ScanForEnemy() != null)
                     {
@@ -48,9 +55,46 @@ public class UnitBrain : MonoBehaviour
 
 
 
-            case states.attack:
+            case states.attack: //used when an enemy enters combat range
                 {
-                    unitMovement.target = transform.position;
+                    if (target != null)
+                    {
+
+
+                        unitMovement.target = transform.position;
+                        bool contAttack = false;
+                        Collider2D[] attackResults = Physics2D.OverlapCircleAll(transform.position, viewRange, whatIsUnit);
+                        if (attackResults.Length > 0)
+                        {
+                            for (int x = 0; x < attackResults.Length; x++)
+                            {
+                                if (attackResults[x].gameObject == target.gameObject)
+                                {
+                                    contAttack = true;
+                                }
+                            }
+                        }
+                        if (!contAttack)
+                        {
+                            state = states.move;
+                        }
+
+                        else
+                        {
+                            attackTimer -= Time.deltaTime;
+                            if (attackTimer < 0)
+                            {
+                                Health tHealth = target.GetComponent<Health>();
+                                tHealth.onTakeDmg(attackDamage);
+                                attackTimer = attackTime;
+                                print("Attack");
+                            }
+
+
+                        }
+                        
+                    }
+                    else { state = states.idle; }
                     break;
                 }
 
@@ -66,15 +110,25 @@ public class UnitBrain : MonoBehaviour
             case states.move:
                 {
                     target = ScanForEnemy();
-                    enemyTarget = target;
+                    
                     if (target != null)
                     {
-                        unitMovement.target = (Vector2)target.position;
+                        unitMovement.target = target.position;
                         print(gameObject.name + "Distance to target:" + Vector2.Distance(target.position, transform.position));
-                        if (Physics2D.Raycast(transform.position, -(transform.position - enemyTarget.position).normalized,attackRange))
+                        Collider2D[] attackResults = Physics2D.OverlapCircleAll(transform.position, attackRange, whatIsUnit);
+                        if(attackResults.Length > 0)
                         {
-                            state = states.attack;
+                            for(int x = 0; x < attackResults.Length; x++)
+                            {
+                                if (attackResults[x].gameObject == target.gameObject)
+                                {
+                                    print(target.name);
+                                    state = states.attack;
+                                }
+                            }
                         }
+                        
+                        
                     }
                     else
                     {
@@ -98,9 +152,9 @@ public class UnitBrain : MonoBehaviour
         
     }
 
-    public Transform ScanForEnemy()
+    public Transform ScanForEnemy() //scans for enemys to approach and attack
     {
-        Collider2D[] results = Physics2D.OverlapCircleAll(transform.position, viewRange, LayerMask.NameToLayer("Unit"));
+        Collider2D[] results = Physics2D.OverlapCircleAll(transform.position, viewRange, whatIsUnit);
         
         List<UnitBrain> result = new List<UnitBrain>();
         if (results.Length > 0)
@@ -156,11 +210,9 @@ public class UnitBrain : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, viewRange);
-        if(target != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position,transform.position+ -(transform.position - enemyTarget.position).normalized * attackRange);
-        }
-        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+
     }
 }
