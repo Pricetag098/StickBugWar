@@ -173,16 +173,7 @@ public class UnitBrain : MonoBehaviour
                         
                         
                     }
-                    else
-                    {
-                        if (Input.GetMouseButtonDown(0) && teamCode == "A")
-                        {
-                            Vector3 mouse = Input.mousePosition;
-                            unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
-
-                        }
-
-                    }
+                    
                     if(Vector2.Distance(transform.position, unitMovement.target)< .1f )
                     {
                         state = states.idle;
@@ -253,6 +244,15 @@ public class UnitBrain : MonoBehaviour
         return null;
 
     }
+
+    public void onOrder(Vector2 order)
+    {
+        state = states.move;
+        unitMovement.target = order;
+    }
+
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
