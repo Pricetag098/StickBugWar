@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    
     public void QuitFun()
     {
         Application.Quit();
@@ -25,13 +24,11 @@ public class Menu : MonoBehaviour
         }
     }
 
-    void Awake() {
-        DontDestroyOnLoad(this.gameObject);
-    }
+
 
     void Update()
     {
-        if (Input.GetKey("escape"))
+        if (Input.GetKeyDown("escape"))
         {
             SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
         }
