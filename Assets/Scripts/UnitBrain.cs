@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class UnitBrain : MonoBehaviour
 {
+
+    // setting the class automaticaly sets the values;
+    public enum Classes { knight,archer,scout,tank, miner, tower};
+    public Classes unitClass;
+
+
     [Header("Unit Values")]
    
     public string teamCode;
@@ -20,11 +26,48 @@ public class UnitBrain : MonoBehaviour
     float attackTimer = 0;
 
     UnitMovement unitMovement;
+    Health health;
     Transform target;
     // Start is called before the first frame update
     void Start()
     {
         unitMovement = GetComponent<UnitMovement>();
+        health = GetComponent<Health>();
+
+
+        switch (unitClass)
+        {
+            case Classes.knight:
+                {
+                    viewRange = 3;
+                    attackRange = 1;
+                    attackTime = 1;
+                    attackDamage = 1;
+                    health.maxHealth = 10;
+                    health.health = health.maxHealth;
+                    break;
+                }
+            case Classes.archer:
+                {
+                    viewRange = 3;
+                    attackRange = 2;
+                    attackTime = 2.5f;
+                    attackDamage = 1;
+                    health.maxHealth = 5;
+                    health.health = health.maxHealth;
+                    break;
+                }
+            default:
+                {
+                    viewRange = 0;
+                    attackRange = 0;
+                    attackTime = 0;
+                    attackDamage = 0;
+                    health.maxHealth = 100;
+                    health.health = health.maxHealth;
+                    break;
+                }
+        }
     }
 
     // Update is called once per frame
@@ -114,7 +157,7 @@ public class UnitBrain : MonoBehaviour
                     if (target != null)
                     {
                         unitMovement.target = target.position;
-                        print(gameObject.name + "Distance to target:" + Vector2.Distance(target.position, transform.position));
+                        //print(gameObject.name + "Distance to target:" + Vector2.Distance(target.position, transform.position));
                         Collider2D[] attackResults = Physics2D.OverlapCircleAll(transform.position, attackRange, whatIsUnit);
                         if(attackResults.Length > 0)
                         {
@@ -130,15 +173,10 @@ public class UnitBrain : MonoBehaviour
                         
                         
                     }
-                    else
+                    
+                    if(Vector2.Distance(transform.position, unitMovement.target)< .1f )
                     {
-                        if (Input.GetMouseButtonDown(0) && teamCode == "A")
-                        {
-                            Vector3 mouse = Input.mousePosition;
-                            unitMovement.target = Camera.main.ScreenToWorldPoint(mouse);
-
-                        }
-
+                        state = states.idle;
                     }
                     
 
@@ -206,6 +244,15 @@ public class UnitBrain : MonoBehaviour
         return null;
 
     }
+
+    public void onOrder(Vector2 order)
+    {
+        state = states.move;
+        unitMovement.target = order;
+    }
+
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
