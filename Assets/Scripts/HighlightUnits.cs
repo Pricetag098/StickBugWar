@@ -16,6 +16,7 @@ public class HighlightUnits : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         square = transform.GetChild(0).gameObject;
         square.SetActive(false);
     }
@@ -81,7 +82,11 @@ public class HighlightUnits : MonoBehaviour
             for (int x = 0; x < unitBrains.ToArray().Length; x++)
             {
                 Gizmos.color = Color.blue;
-                Gizmos.DrawWireSphere(unitBrains[x].transform.position, .3f);
+                if(unitBrains[x] != null)
+                {
+                    Gizmos.DrawWireSphere(unitBrains[x].transform.position, .3f);
+                }
+               
 
             }
         }

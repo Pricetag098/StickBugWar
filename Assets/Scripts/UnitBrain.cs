@@ -6,7 +6,7 @@ public class UnitBrain : MonoBehaviour
 {
 
     // setting the class automaticaly sets the values;
-    public enum Classes { knight,archer,scout,tank };
+    public enum Classes { knight,archer,scout,tank, miner, tower};
     public Classes unitClass;
 
 
@@ -50,8 +50,8 @@ public class UnitBrain : MonoBehaviour
             case Classes.archer:
                 {
                     viewRange = 3;
-                    attackRange = 1;
-                    attackTime = 1;
+                    attackRange = 2;
+                    attackTime = 2.5f;
                     attackDamage = 1;
                     health.maxHealth = 5;
                     health.health = health.maxHealth;
@@ -59,11 +59,11 @@ public class UnitBrain : MonoBehaviour
                 }
             default:
                 {
-                    viewRange = 3;
-                    attackRange = 1;
-                    attackTime = 1;
-                    attackDamage = 1;
-                    health.maxHealth = 10;
+                    viewRange = 0;
+                    attackRange = 0;
+                    attackTime = 0;
+                    attackDamage = 0;
+                    health.maxHealth = 100;
                     health.health = health.maxHealth;
                     break;
                 }
@@ -157,7 +157,7 @@ public class UnitBrain : MonoBehaviour
                     if (target != null)
                     {
                         unitMovement.target = target.position;
-                        print(gameObject.name + "Distance to target:" + Vector2.Distance(target.position, transform.position));
+                        //print(gameObject.name + "Distance to target:" + Vector2.Distance(target.position, transform.position));
                         Collider2D[] attackResults = Physics2D.OverlapCircleAll(transform.position, attackRange, whatIsUnit);
                         if(attackResults.Length > 0)
                         {
