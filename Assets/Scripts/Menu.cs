@@ -20,6 +20,7 @@ public class Menu : MonoBehaviour
         else
         {
             SceneManager.UnloadSceneAsync("Menu");
+            Time.timeScale = 1f;
             Debug.Log("Resume");
         }
     }
@@ -31,6 +32,7 @@ public class Menu : MonoBehaviour
         if (Input.GetKeyDown("escape"))
         {
             SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+            Time.timeScale = 0f;
         }
     }
 }
