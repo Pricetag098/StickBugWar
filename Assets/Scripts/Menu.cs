@@ -25,14 +25,19 @@ public class Menu : MonoBehaviour
         }
     }
 
+    public void Pause()
+    {
+        Debug.Log("Pause");
+        SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
+        Time.timeScale = 0f;
+    }
 
 
     void Update()
     {
         if (Input.GetKeyDown("escape"))
         {
-            SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
-            Time.timeScale = 0f;
+            Pause();
         }
     }
 }
