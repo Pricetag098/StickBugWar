@@ -9,6 +9,7 @@ public class UnitBrain : MonoBehaviour
     public enum Classes { knight,archer,scout,tank, miner, tower};
     public Classes unitClass;
 
+    public bool testUnit = false;
 
     [Header("Unit Values")]
    
@@ -33,6 +34,10 @@ public class UnitBrain : MonoBehaviour
     {
         unitMovement = GetComponent<UnitMovement>();
         health = GetComponent<Health>();
+        if (testUnit)
+        {
+            Innit(teamCode, unitClass);
+        }
     }
 
     // Update is called once per frame
@@ -246,11 +251,21 @@ public class UnitBrain : MonoBehaviour
                 }
             case Classes.archer:
                 {
+                    viewRange = 3.5f;
+                    attackRange = 2;
+                    attackTime = 3f;
+                    attackDamage = 2;
+                    health.maxHealth = 5;
+                    health.health = health.maxHealth;
+                    break;
+                }
+            case Classes.tank:
+                {
                     viewRange = 3;
                     attackRange = 2;
-                    attackTime = 2.5f;
-                    attackDamage = 1;
-                    health.maxHealth = 5;
+                    attackTime = 3f;
+                    attackDamage = .5f;
+                    health.maxHealth = 20;
                     health.health = health.maxHealth;
                     break;
                 }
