@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UnitSpawner : MonoBehaviour
 {
-    /*
     public GameObject unitDefault;
     public Vector3 enemyBaseLocation;
     // Start is called before the first frame update
@@ -18,14 +17,32 @@ public class UnitSpawner : MonoBehaviour
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.miner);
+            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.scout);
     }
-    public void ()
+    public void Archer()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.miner);
+            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.archer);
     }
+    public void Knight()
+    {
+        GameObject unitInstance;
+            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.knight);
+    }
+    public void Tank()
+    {
+        GameObject unitInstance;
+            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.tank);
+    }
+    /*public void Giant()
+    {
+        GameObject unitInstance;
+            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.giant);
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -34,21 +51,25 @@ public class UnitSpawner : MonoBehaviour
         {
             Miner();
         }
-        if(Input.GetKeyDown("1"))
+        if(Input.GetKeyDown("2"))
         {
-            Miner();
+            Scout();
         }
-        if(Input.GetKeyDown("1"))
+        if(Input.GetKeyDown("3"))
         {
-            Miner();
+            Archer();
         }
-        if(Input.GetKeyDown("1"))
+        if(Input.GetKeyDown("4"))
         {
-            Miner();
+            Knight();
         }
-        if(Input.GetKeyDown("1"))
+        if(Input.GetKeyDown("5"))
         {
-            Miner();
-        }          
-    */
+            Tank();
+        }
+        /*if(Input.GetKeyDown("6"))
+        {
+            Giant();
+        }*/       
+    }
 }
