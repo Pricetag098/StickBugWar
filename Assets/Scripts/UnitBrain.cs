@@ -33,41 +33,6 @@ public class UnitBrain : MonoBehaviour
     {
         unitMovement = GetComponent<UnitMovement>();
         health = GetComponent<Health>();
-
-
-        switch (unitClass)
-        {
-            case Classes.knight:
-                {
-                    viewRange = 3;
-                    attackRange = 1;
-                    attackTime = 1;
-                    attackDamage = 1;
-                    health.maxHealth = 10;
-                    health.health = health.maxHealth;
-                    break;
-                }
-            case Classes.archer:
-                {
-                    viewRange = 3;
-                    attackRange = 2;
-                    attackTime = 2.5f;
-                    attackDamage = 1;
-                    health.maxHealth = 5;
-                    health.health = health.maxHealth;
-                    break;
-                }
-            default:
-                {
-                    viewRange = 0;
-                    attackRange = 0;
-                    attackTime = 0;
-                    attackDamage = 0;
-                    health.maxHealth = 100;
-                    health.health = health.maxHealth;
-                    break;
-                }
-        }
     }
 
     // Update is called once per frame
@@ -251,6 +216,56 @@ public class UnitBrain : MonoBehaviour
         unitMovement.target = order;
     }
 
+
+
+    /*CALL WHEN CREATING A UNIT
+     * 
+     * 1 instansiate unit
+     * 2 do unit.UnitBrain.Innit( "the code for the team" , UnitBrain.Classes.'the class you want')
+     * 3 idk hope it works lol
+     * 
+     */
+
+    public void Innit(string tCode, Classes type)
+    {
+        unitClass = type;
+
+        teamCode = tCode;
+
+        switch (unitClass)
+        {
+            case Classes.knight:
+                {
+                    viewRange = 3;
+                    attackRange = 1;
+                    attackTime = 1;
+                    attackDamage = 1;
+                    health.maxHealth = 10;
+                    health.health = health.maxHealth;
+                    break;
+                }
+            case Classes.archer:
+                {
+                    viewRange = 3;
+                    attackRange = 2;
+                    attackTime = 2.5f;
+                    attackDamage = 1;
+                    health.maxHealth = 5;
+                    health.health = health.maxHealth;
+                    break;
+                }
+            default:
+                {
+                    viewRange = 0;
+                    attackRange = 0;
+                    attackTime = 0;
+                    attackDamage = 0;
+                    health.maxHealth = 100;
+                    health.health = health.maxHealth;
+                    break;
+                }
+        }
+    }
 
 
     private void OnDrawGizmos()
