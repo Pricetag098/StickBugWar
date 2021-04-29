@@ -26,6 +26,9 @@ public class UnitBrain : MonoBehaviour
     public states state;
     float attackTimer = 0;
 
+    public Sprite[] icons;
+    public SpriteRenderer sr;
+
     UnitMovement unitMovement;
     Health health;
     Transform target;
@@ -247,26 +250,44 @@ public class UnitBrain : MonoBehaviour
                     attackDamage = 1;
                     health.maxHealth = 10;
                     health.health = health.maxHealth;
+                    sr.sprite = icons[1];
+                    transform.localScale = Vector3.one * 1;
                     break;
                 }
             case Classes.archer:
                 {
                     viewRange = 3.5f;
-                    attackRange = 2;
+                    attackRange = 2.1f;
                     attackTime = 3f;
                     attackDamage = 2;
                     health.maxHealth = 5;
                     health.health = health.maxHealth;
+                    sr.sprite = icons[2];
+                    transform.localScale = Vector3.one * 0.75f;
                     break;
                 }
             case Classes.tank:
                 {
                     viewRange = 3;
-                    attackRange = 2;
+                    attackRange = 1;
                     attackTime = 3f;
                     attackDamage = .5f;
                     health.maxHealth = 20;
                     health.health = health.maxHealth;
+                    sr.sprite = icons[3];
+                    transform.localScale = Vector3.one * 1.25f;
+                    break;
+                }
+            case Classes.tower:
+                {
+                    viewRange = 0;
+                    attackRange = 0;
+                    attackTime = 0;
+                    attackDamage = 0;
+                    health.maxHealth = 1500;
+                    health.health = health.maxHealth;
+                    sr.sprite = icons[4];
+                    transform.localScale = Vector3.one * 5;
                     break;
                 }
             default:
@@ -277,6 +298,8 @@ public class UnitBrain : MonoBehaviour
                     attackDamage = 0;
                     health.maxHealth = 100;
                     health.health = health.maxHealth;
+                    sr.sprite = icons[0];
+                    transform.localScale = Vector3.one * 1;
                     break;
                 }
         }

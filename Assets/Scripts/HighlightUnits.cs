@@ -45,7 +45,7 @@ public class HighlightUnits : MonoBehaviour
                 0,
                 whatToHighlight);
 
-            Debug.Log(results.Length);
+            //Debug.Log(results.Length);
             if (results.Length > 0)
             {
 
