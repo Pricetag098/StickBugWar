@@ -29,18 +29,26 @@ public class HighlightUnits : MonoBehaviour
             clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             record = true;
             square.SetActive(true);
-            unitBrains.Clear();
+            
         }
         if (record)
         {
+            unitBrains.Clear();
             currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             square.transform.position = midpoint(currentPos, clickPos);
             square.transform.localScale = new Vector3(currentPos.x - clickPos.x,currentPos.y - clickPos.y,1);
-            Collider2D[] results = Physics2D.OverlapBoxAll(midpoint(currentPos, clickPos), new Vector2(currentPos.x - clickPos.x, currentPos.y - clickPos.y),0,whatToHighlight);
-            
+            Collider2D[] results = Physics2D.OverlapBoxAll(midpoint(currentPos, clickPos),
+                new Vector2(
+                    Mathf.Abs(currentPos.x - clickPos.x),
+                    Mathf.Abs(currentPos.y - clickPos.y)
+                    ),
+                0,
+                whatToHighlight);
+
+            Debug.Log(results.Length);
             if (results.Length > 0)
             {
-                
+
                 for (int x = 0; x < results.Length; x++)
                 {
                     
