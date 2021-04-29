@@ -18,8 +18,8 @@ public class UnitSpawner : MonoBehaviour
         if(Input.GetKeyDown("s"))
         {
             GameObject unitInstance;
-            //unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            //unitInstance.GetComponent<UnitBrain.Classes.tank>();
+            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.tank);
         }
     }
 }
