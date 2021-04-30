@@ -11,31 +11,32 @@ public class UnitSpawner : MonoBehaviour
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.miner);
+            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.miner);
     }
     public void Scout()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.scout);
+            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.scout);
     }
     public void Archer()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.archer);
+            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.archer);
     }
     public void Knight()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.knight);
+            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.knight);
     }
     public void Tank()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.tank);
+            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.tank);
+            //unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.onOrder());
     }
     /*public void Giant()
     {
