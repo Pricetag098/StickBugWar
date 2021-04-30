@@ -70,5 +70,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cae4663f461b414db70e9a1f1ebe96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitDefault: {fileID: 0}
+  unitDefault: {fileID: 8453986525589847715, guid: 5e8f612f98b684e4abdcf344a6867795, type: 3}
   enemyBaseLocation: {x: 0, y: 0, z: 0}
