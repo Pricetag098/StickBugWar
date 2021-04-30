@@ -6,7 +6,7 @@ public class UnitBrain : MonoBehaviour
 {
 
     // setting the class automaticaly sets the values;
-    public enum Classes { knight,archer,scout,tank, miner, tower};
+    public enum Classes { knight, archer, scout, tank, giant, miner, tower, ore};
     public Classes unitClass;
 
     public bool testUnit = false;
@@ -90,6 +90,7 @@ public class UnitBrain : MonoBehaviour
                                 }
                             }
                         }
+                        
                         if (!contAttack)
                         {
                             state = states.move;
@@ -103,7 +104,7 @@ public class UnitBrain : MonoBehaviour
                                 Health tHealth = target.GetComponent<Health>();
                                 tHealth.onTakeDmg(attackDamage);
                                 attackTimer = attackTime;
-                                print("Attack");
+                                //print("Attack");
                             }
 
 
@@ -239,7 +240,7 @@ public class UnitBrain : MonoBehaviour
         unitClass = type;
 
         teamCode = tCode;
-
+        
         switch (unitClass)
         {
             case Classes.knight:
@@ -249,6 +250,7 @@ public class UnitBrain : MonoBehaviour
                     attackTime = 1;
                     attackDamage = 1;
                     health.maxHealth = 10;
+                    unitMovement.speed = 3;
                     health.health = health.maxHealth;
                     sr.sprite = icons[1];
                     transform.localScale = Vector3.one * 1;
@@ -261,6 +263,7 @@ public class UnitBrain : MonoBehaviour
                     attackTime = 3f;
                     attackDamage = 2;
                     health.maxHealth = 5;
+                    unitMovement.speed = 2.75f;
                     health.health = health.maxHealth;
                     sr.sprite = icons[2];
                     transform.localScale = Vector3.one * 0.75f;
@@ -272,10 +275,24 @@ public class UnitBrain : MonoBehaviour
                     attackRange = 1;
                     attackTime = 3f;
                     attackDamage = .5f;
-                    health.maxHealth = 20;
+                    health.maxHealth = 30;
+                    unitMovement.speed = 3;
                     health.health = health.maxHealth;
                     sr.sprite = icons[3];
                     transform.localScale = Vector3.one * 1.25f;
+                    break;
+                }
+            case Classes.giant:
+                {
+                    viewRange = 2;
+                    attackRange = 1.5f;
+                    attackTime = 3f;
+                    attackDamage = 5f;
+                    health.maxHealth = 30;
+                    unitMovement.speed = 1.5f;
+                    health.health = health.maxHealth;
+                    sr.sprite = icons[6];
+                    transform.localScale = Vector3.one * 1.5f;
                     break;
                 }
             case Classes.tower:
@@ -285,8 +302,9 @@ public class UnitBrain : MonoBehaviour
                     attackTime = 0;
                     attackDamage = 0;
                     health.maxHealth = 1500;
+                    unitMovement.speed = 0;
                     health.health = health.maxHealth;
-                    sr.sprite = icons[4];
+                    sr.sprite = icons[7];
                     transform.localScale = Vector3.one * 5;
                     break;
                 }
@@ -297,6 +315,7 @@ public class UnitBrain : MonoBehaviour
                     attackTime = 0;
                     attackDamage = 0;
                     health.maxHealth = 100;
+                    unitMovement.speed = 0;
                     health.health = health.maxHealth;
                     sr.sprite = icons[0];
                     transform.localScale = Vector3.one * 1;
@@ -305,7 +324,10 @@ public class UnitBrain : MonoBehaviour
         }
     }
 
+    void onAttack()
+    {
 
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
