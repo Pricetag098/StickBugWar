@@ -33,7 +33,7 @@ public class UnitBrain : MonoBehaviour
     Health health;
     Transform target;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         unitMovement = GetComponent<UnitMovement>();
         health = GetComponent<Health>();
@@ -104,6 +104,7 @@ public class UnitBrain : MonoBehaviour
                                 Health tHealth = target.GetComponent<Health>();
                                 tHealth.onTakeDmg(attackDamage);
                                 attackTimer = attackTime;
+                                onAttack();
                                 //print("Attack");
                             }
 
