@@ -6,44 +6,46 @@ public class UnitSpawner : MonoBehaviour
 {
     public GameObject unitDefault;
     public Vector3 enemyBaseLocation;
-    // Start is called before the first frame update
+    public GameObject moneyText;
+    public string team = "A";
+
     public void Miner()
-    {
-        GameObject unitInstance;
+    {   GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.miner);
+            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.scout);
     }
     public void Scout()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.scout);
+            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.scout);
     }
     public void Archer()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.archer);
+            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.archer);
     }
     public void Knight()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.knight);
+            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.knight);
     }
     public void Tank()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("B",UnitBrain.Classes.tank);
-            //unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.onOrder());
+            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.tank);
+            unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-30f,0f));
+        
     }
-    /*public void Giant()
+    public void Giant()
     {
         GameObject unitInstance;
             unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit("A",UnitBrain.Classes.giant);
-    }*/
+            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.giant);
+    }
 
     // Update is called once per frame
     void Update()
