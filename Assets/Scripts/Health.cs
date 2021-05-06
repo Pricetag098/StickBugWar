@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
     public float health,maxHealth;
 
+    public bool isOre;
     public Gradient hpGradient;
     public SpriteRenderer sr;
 
@@ -18,7 +19,12 @@ public class Health : MonoBehaviour
     {
         health -= dmg;
         if(health <= 0) { onDeath(); }
+
         sr.color = hpGradient.Evaluate(health / maxHealth);
+        if (isOre)
+        {
+
+        }
     }
     public void onDeath()
     {
