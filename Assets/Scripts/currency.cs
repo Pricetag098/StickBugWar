@@ -10,7 +10,6 @@ public class currency : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moneyText = GetComponent<Text>();
         moneyText.text = "$" + money;
     }
 
