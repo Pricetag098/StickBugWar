@@ -101,6 +101,7 @@ public class UnitBrain : MonoBehaviour
                             attackTimer -= Time.deltaTime;
                             if (attackTimer < 0)
                             {
+                                
                                 Health tHealth = target.GetComponent<Health>();
                                 tHealth.onTakeDmg(attackDamage);
                                 attackTimer = attackTime;
@@ -118,14 +119,14 @@ public class UnitBrain : MonoBehaviour
 
 
 
-            case states.retreat:
+            case states.retreat: //unused
                 {
                     break;
                 }
 
 
 
-            case states.move:
+            case states.move: //used when the unit is in motion to a target
                 {
                     target = ScanForEnemy();
                     
@@ -174,7 +175,11 @@ public class UnitBrain : MonoBehaviour
         {
             for (int x = 0; x < results.Length; x++)
             {
-                if (results[x].GetComponent<UnitBrain>().teamCode != teamCode)
+                if (results[x].GetComponent<UnitBrain>().teamCode != teamCode && results[x].GetComponent<UnitBrain>().teamCode != "R" && unitClass != Classes.miner)
+                {
+                    result.Add(results[x].GetComponent<UnitBrain>());
+                }
+                if (results[x].GetComponent<UnitBrain>().teamCode == "R" && unitClass == Classes.miner)
                 {
                     result.Add(results[x].GetComponent<UnitBrain>());
                 }
@@ -219,6 +224,8 @@ public class UnitBrain : MonoBehaviour
         return null;
 
     }
+
+    
 
     public void onOrder(Vector2 order)
     {
@@ -307,6 +314,45 @@ public class UnitBrain : MonoBehaviour
                     health.health = health.maxHealth;
                     sr.sprite = icons[7];
                     transform.localScale = Vector3.one * 5;
+                    break;
+                }
+            case Classes.scout:
+                {
+                    viewRange = 2;
+                    attackRange = 1;
+                    attackTime = 1;
+                    attackDamage = 0.5f;
+                    health.maxHealth = 3;
+                    unitMovement.speed = 6;
+                    health.health = health.maxHealth;
+                    sr.sprite = icons[5];
+                    transform.localScale = Vector3.one * 5;
+                    break;
+                }
+            case Classes.miner:
+                {
+                    viewRange = 3;
+                    attackRange = 1;
+                    attackTime = 1;
+                    attackDamage = 1;
+                    health.maxHealth = 10;
+                    unitMovement.speed = 3;
+                    health.health = health.maxHealth;
+                    sr.sprite = icons[4];
+                    transform.localScale = Vector3.one * 1;
+                    break;
+                }
+            case Classes.ore:
+                {
+                    viewRange = 0;
+                    attackRange = 0;
+                    attackTime = 0;
+                    attackDamage = 0;
+                    health.maxHealth = 100;
+                    unitMovement.speed = 0;
+                    health.health = health.maxHealth;
+                    sr.sprite = icons[0];
+                    transform.localScale = Vector3.one * 1;
                     break;
                 }
             default:
