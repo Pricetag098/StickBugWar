@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     public float health,maxHealth;
 
     public bool isOre;
+    public currency tower;
     public Gradient hpGradient;
     public SpriteRenderer sr;
 
@@ -23,7 +24,7 @@ public class Health : MonoBehaviour
         sr.color = hpGradient.Evaluate(health / maxHealth);
         if (isOre)
         {
-
+            tower.addMoney((int)dmg * 50);
         }
     }
     public void onDeath()
