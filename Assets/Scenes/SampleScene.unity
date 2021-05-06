@@ -454,7 +454,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 800322972, guid: de7568ebafe884df6962920e87418099, type: 3}
+      - m_Target: {fileID: 1778497053}
         m_TargetAssemblyTypeName: UnitSpawner, Assembly-CSharp
         m_MethodName: Tank
         m_Mode: 1
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 800322972, guid: de7568ebafe884df6962920e87418099, type: 3}
+      - m_Target: {fileID: 1778497053}
         m_TargetAssemblyTypeName: UnitSpawner, Assembly-CSharp
         m_MethodName: Knight
         m_Mode: 1
@@ -1473,7 +1473,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 694635406}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1778497053}
+        m_TargetAssemblyTypeName: UnitSpawner, Assembly-CSharp
+        m_MethodName: Giant
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &694635406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1596,7 +1608,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 800322972, guid: de7568ebafe884df6962920e87418099, type: 3}
+      - m_Target: {fileID: 1778497053}
         m_TargetAssemblyTypeName: UnitSpawner, Assembly-CSharp
         m_MethodName: Archer
         m_Mode: 1
@@ -1876,8 +1888,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 800322973, guid: de7568ebafe884df6962920e87418099, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de7568ebafe884df6962920e87418099, type: 3}
 --- !u!1 &902902018
 GameObject:
@@ -1929,7 +1940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc30afea2baa44f49b8072eb2579671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 100
+  money: 500
   moneyText: {fileID: 902902021}
 --- !u!114 &902902021
 MonoBehaviour:
@@ -1964,7 +1975,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: $100
+  m_Text: $500
 --- !u!222 &902902022
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2315,7 +2326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191427834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 9, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 43440956}
@@ -3033,7 +3044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667544594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalPosition: {x: 0, y: -9, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 43440956}
@@ -3187,6 +3198,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708312885}
   m_CullTransparentMesh: 1
+--- !u!114 &1778497053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 800322972, guid: de7568ebafe884df6962920e87418099, type: 3}
+  m_PrefabInstance: {fileID: 800322970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cae4663f461b414db70e9a1f1ebe96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1786041228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,7 +3293,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 800322972, guid: de7568ebafe884df6962920e87418099, type: 3}
+      - m_Target: {fileID: 1778497053}
         m_TargetAssemblyTypeName: UnitSpawner, Assembly-CSharp
         m_MethodName: Miner
         m_Mode: 1
@@ -3634,7 +3656,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 800322972, guid: de7568ebafe884df6962920e87418099, type: 3}
+      - m_Target: {fileID: 1778497053}
         m_TargetAssemblyTypeName: UnitSpawner, Assembly-CSharp
         m_MethodName: Scout
         m_Mode: 1

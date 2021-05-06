@@ -10,41 +10,47 @@ public class UnitSpawner : MonoBehaviour
     public string team = "A";
 
     public void Miner()
-    {   GameObject unitInstance;
-            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.scout);
+    { 
+        GameObject unitInstance;
+        unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+        unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.miner);
+        moneyText.GetComponent<currency>().subtractMoney(50);
     }
     public void Scout()
     {
         GameObject unitInstance;
-            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.scout);
+        unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+        unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.scout);
+        moneyText.GetComponent<currency>().subtractMoney(75);
     }
     public void Archer()
     {
         GameObject unitInstance;
-            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.archer);
+        unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+        unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.archer);
+        moneyText.GetComponent<currency>().subtractMoney(150);
     }
     public void Knight()
     {
         GameObject unitInstance;
-            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.knight);
+        unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+        unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.knight);
+        moneyText.GetComponent<currency>().subtractMoney(150);
     }
     public void Tank()
     {
         GameObject unitInstance;
-            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.tank);
-            unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-30f,0f));
-        
+        unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+        unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.tank);
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-30f,0f));
+        moneyText.GetComponent<currency>().subtractMoney(300);   
     }
     public void Giant()
     {
         GameObject unitInstance;
-            unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
-            unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.giant);
+        unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
+        unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.giant);
+        moneyText.GetComponent<currency>().subtractMoney(700);
     }
 
     // Update is called once per frame
@@ -70,9 +76,9 @@ public class UnitSpawner : MonoBehaviour
         {
             Tank();
         }
-        /*if(Input.GetKeyDown("6"))
+        if(Input.GetKeyDown("6"))
         {
             Giant();
-        }*/       
+        }    
     }
 }

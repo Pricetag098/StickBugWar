@@ -11,7 +11,7 @@ public class currency : MonoBehaviour
     void Start()
     {
         moneyText = GetComponent<Text>();
-        money = 100;
+        moneyText.text = "$" + money;
     }
 
     // Update is called once per frame
