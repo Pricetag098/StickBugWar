@@ -351,7 +351,7 @@ public class UnitBrain : MonoBehaviour
                     health.maxHealth = 100;
                     unitMovement.speed = 0;
                     health.health = health.maxHealth;
-                    sr.sprite = icons[0];
+                    sr.sprite = icons[8];
                     transform.localScale = Vector3.one * 1;
                     break;
                 }
