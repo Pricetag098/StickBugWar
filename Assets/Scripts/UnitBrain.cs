@@ -326,7 +326,7 @@ public class UnitBrain : MonoBehaviour
                     unitMovement.speed = 6;
                     health.health = health.maxHealth;
                     sr.sprite = icons[5];
-                    transform.localScale = Vector3.one * 5;
+                    transform.localScale = Vector3.one * .5f;
                     break;
                 }
             case Classes.miner:
