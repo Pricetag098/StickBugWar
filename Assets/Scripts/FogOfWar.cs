@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class FogOfWar : MonoBehaviour
 {
-    private new List<GameObject> PlayerUnits = new List<GameObject>();
-    public Transform Fog;
-    private GameObject furthestUnit;
-    // Start is called before the first frame update
-    void Start()
-    {
-        foreach (GameObject Unit in GameObject.FindGameObjectsWithTag("Unit"))
-        {
-            if (Unit.GetComponent<UnitBrain>().teamCode == "A")
-            {
-                PlayerUnits.Add(Unit);
-            }
-        }
-    }
+    public Transform fog;
+    public string tc;
+    public float furtherstUnit;
+    public float endpos;
 
-    // Update is called once per frame
-    void Update()
+    GameObject[] units;
+    List<float> unitlocations = new List<float>();
+
+    private void Update()
     {
-        foreach (GameObject Unit in PlayerUnits)
+        units = GameObject.FindGameObjectsWithTag("Unit");
+        for(int x = 0; x < units.Length; x++)
         {
-            if (Unit.transform.position.x >= furthestUnit.transform.position.x)
-            {
-                furthestUnit = Unit;
-            }
+            if(units[x].GetComponent<UnitBrain>().teamCode == tc) { unitlocations.Add(units[x].transform.position.x + units[x].transform.localScale.x); }
         }
+
+        unitlocations.Sort();
+        unitlocations.Reverse();
+        furtherstUnit = unitlocations[0];
+        fog.localScale = new Vector3(endpos - furtherstUnit, transform.localScale.y, 1);
+        fog.transform.position = new Vector3((endpos + furtherstUnit) /2, 0,-1);
+
+
     }
 }
