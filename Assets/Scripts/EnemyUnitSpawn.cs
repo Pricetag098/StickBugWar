@@ -57,14 +57,16 @@ public class EnemyUnitSpawn : MonoBehaviour
     
     public void SendWave()
     {
+        //EnemyUnits = {};
         foreach (GameObject Unit in GameObject.FindGameObjectsWithTag("Unit"))
         {
             if (Unit.GetComponent<UnitBrain>().teamCode == "B")
             {
-                EnemyUnits.Add(Unit);
+                Debug.Log("Found a enemy unit");
             }
         }
-        Miner();
+        
+        
         waveLength = 10;
         StartCoroutine("WaveCounter",waveLength);
     }
