@@ -11,20 +11,22 @@ public class EnemyUnitSpawn : MonoBehaviour
     private string team = "B"; 
     public Vector3 enemyBaseLocation = new Vector3(35,0,0);
     //currency
-    public static int EnemyCurrency = 400;
+    public int EnemyCurrency = 400;
     public void Miner()
     { 
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.miner);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(40,Random.Range(-10f,10f))); 
+        EnemyCurrency -= 50;
     }
     public void Scout()
     {
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.scout);
-        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f));
+        EnemyCurrency -= 75; 
     }
     public void Archer()
     {
@@ -32,6 +34,7 @@ public class EnemyUnitSpawn : MonoBehaviour
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.archer);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        EnemyCurrency -= 150;
     }
     public void Knight()
     {
@@ -39,6 +42,7 @@ public class EnemyUnitSpawn : MonoBehaviour
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.knight);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        EnemyCurrency -= 150;
     }
     public void Tank()
     {
@@ -46,6 +50,7 @@ public class EnemyUnitSpawn : MonoBehaviour
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.tank);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        EnemyCurrency -= 300;
     }
     public void Giant()
     {
@@ -53,18 +58,46 @@ public class EnemyUnitSpawn : MonoBehaviour
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.tank);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        EnemyCurrency -= 700;
     }
     
     public void SendWave()
     {
-        //EnemyUnits = {};
+        Dictionary<string, int> EnemyUnits = new Dictionary<string, int>()
+        {
+            {"miner", 0},
+            {"scout", 0},
+            {"archer", 0},
+            {"knight", 0},
+            {"tank", 0},
+            {"giant", 0}
+        };
+
+        foreach (GameObject Unit in GameObject.FindGameObjectsWithTag("Unit")) {
+
+            if (Unit.GetComponent<UnitBrain>().teamCode == "B")
+            {
+                if (EnemyUnits.ContainsKey(Unit.GetComponent<UnitBrain>().unitClassStr))
+                {
+                    EnemyUnits[Unit.GetComponent<UnitBrain>().unitClassStr] += 1;
+                }
+            }
+            Debug.Log(EnemyUnits);
+        }/*
         foreach (GameObject Unit in GameObject.FindGameObjectsWithTag("Unit"))
         {
             if (Unit.GetComponent<UnitBrain>().teamCode == "B")
             {
-                Debug.Log("Found a enemy unit");
+                if (Unit.GetComponent<UnitBrain>().Class in EnemyUnits)
+                {
+                    EnemyUnits[Unit.GetComponent<UnitBrain>().Class] += 1;
+                }
+                else
+                {
+                    EnemyUnits[Unit.GetComponent<UnitBrain>().Class] = 1;
+                }
             }
-        }
+        }*/
         
         
         waveLength = 10;

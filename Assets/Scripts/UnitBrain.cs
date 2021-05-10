@@ -8,6 +8,7 @@ public class UnitBrain : MonoBehaviour
     // setting the class automaticaly sets the values;
     public enum Classes { knight, archer, scout, tank, giant, miner, tower, ore};
     public Classes unitClass;
+    public string unitClassStr;
 
     public bool testUnit = false;
 
@@ -253,6 +254,7 @@ public class UnitBrain : MonoBehaviour
         {
             case Classes.knight:
                 {
+                    unitClassStr = "knight";
                     viewRange = 3;
                     attackRange = 1;
                     attackTime = 1;
@@ -266,6 +268,7 @@ public class UnitBrain : MonoBehaviour
                 }
             case Classes.archer:
                 {
+                    unitClassStr = "archer";
                     viewRange = 3.5f;
                     attackRange = 2.1f;
                     attackTime = 3f;
@@ -279,6 +282,7 @@ public class UnitBrain : MonoBehaviour
                 }
             case Classes.tank:
                 {
+                    unitClassStr = "tank";
                     viewRange = 3;
                     attackRange = 1;
                     attackTime = 3f;
@@ -292,6 +296,7 @@ public class UnitBrain : MonoBehaviour
                 }
             case Classes.giant:
                 {
+                    unitClassStr = "giant";
                     viewRange = 2;
                     attackRange = 1.5f;
                     attackTime = 3f;
@@ -318,6 +323,7 @@ public class UnitBrain : MonoBehaviour
                 }
             case Classes.scout:
                 {
+                    unitClassStr = "scout";
                     viewRange = 2;
                     attackRange = 1;
                     attackTime = 1;
@@ -331,6 +337,7 @@ public class UnitBrain : MonoBehaviour
                 }
             case Classes.miner:
                 {
+                    unitClassStr = "miner";
                     viewRange = 3;
                     attackRange = 1;
                     attackTime = 1;
