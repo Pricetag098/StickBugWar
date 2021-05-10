@@ -14,10 +14,11 @@ public class FogOfWar : MonoBehaviour
 
     private void Update()
     {
+        unitlocations.Clear();
         units = GameObject.FindGameObjectsWithTag("Unit");
         for(int x = 0; x < units.Length; x++)
         {
-            if(units[x].GetComponent<UnitBrain>().teamCode == tc) { unitlocations.Add(units[x].transform.position.x + units[x].transform.localScale.x); }
+            if(units[x].GetComponent<UnitBrain>().teamCode == tc) { unitlocations.Add(units[x].transform.position.x + units[x].GetComponent<UnitBrain>().viewRange); }
         }
 
         unitlocations.Sort();
