@@ -12,6 +12,7 @@ public class EnemyUnitSpawn : MonoBehaviour
     public Vector3 enemyBaseLocation = new Vector3(35,0,0);
     //currency
     public int EnemyCurrency = 400;
+    private int selector;
     public void Miner()
     { 
         GameObject unitInstance;
@@ -63,43 +64,60 @@ public class EnemyUnitSpawn : MonoBehaviour
     
     public void SendWave()
     {
-        Dictionary<string, int> EnemyUnits = new Dictionary<string, int>()
+        Debug.Log(EnemyCurrency);
+        Dictionary<UnitBrain.Classes, int> EnemyUnits = new Dictionary<UnitBrain.Classes, int>()
         {
-            {"miner", 0},
-            {"scout", 0},
-            {"archer", 0},
-            {"knight", 0},
-            {"tank", 0},
-            {"giant", 0}
+            {UnitBrain.Classes.miner, 0},
+            {UnitBrain.Classes.scout, 0},
+            {UnitBrain.Classes.knight, 0},
+            {UnitBrain.Classes.archer, 0},
+            {UnitBrain.Classes.tank, 0},
+            {UnitBrain.Classes.giant, 0}
         };
 
         foreach (GameObject Unit in GameObject.FindGameObjectsWithTag("Unit")) {
 
             if (Unit.GetComponent<UnitBrain>().teamCode == "B")
             {
-                if (EnemyUnits.ContainsKey(Unit.GetComponent<UnitBrain>().unitClassStr))
+                if (EnemyUnits.ContainsKey(Unit.GetComponent<UnitBrain>().unitClass))
                 {
-                    EnemyUnits[Unit.GetComponent<UnitBrain>().unitClassStr] += 1;
+                    EnemyUnits[Unit.GetComponent<UnitBrain>().unitClass] += 1;
                 }
             }
             Debug.Log(EnemyUnits);
-        }/*
-        foreach (GameObject Unit in GameObject.FindGameObjectsWithTag("Unit"))
+        }
+        if (EnemyUnits[UnitBrain.Classes.miner] < 3)
         {
-            if (Unit.GetComponent<UnitBrain>().teamCode == "B")
+            Miner();
+        }
+        if (EnemyCurrency >= 700)
+        {
+            Giant();
+        }
+        if (EnemyCurrency >= 300)
+        {
+            selector = Random.Range(0,3);
+            Debug.Log("Selector:" + selector);
+            if (selector == 0)
             {
-                if (Unit.GetComponent<UnitBrain>().Class in EnemyUnits)
-                {
-                    EnemyUnits[Unit.GetComponent<UnitBrain>().Class] += 1;
-                }
-                else
-                {
-                    EnemyUnits[Unit.GetComponent<UnitBrain>().Class] = 1;
-                }
+                Archer();
+                Archer();
             }
-        }*/
-        
-        
+            if (selector == 1)
+            {
+                Archer();
+                Knight();
+            }
+            if (selector == 2)
+            {
+                Knight();
+                Knight();
+            }
+            if (selector == 3)
+            {
+                Tank();
+            }
+        }
         waveLength = 10;
         StartCoroutine("WaveCounter",waveLength);
     }
