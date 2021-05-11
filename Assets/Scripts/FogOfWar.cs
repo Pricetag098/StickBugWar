@@ -18,7 +18,7 @@ public class FogOfWar : MonoBehaviour
         units = GameObject.FindGameObjectsWithTag("Unit");
         for(int x = 0; x < units.Length; x++)
         {
-            if(units[x].GetComponent<UnitBrain>().teamCode == tc) { unitlocations.Add(units[x].transform.position.x + units[x].GetComponent<UnitBrain>().viewRange); }
+            if(units[x].GetComponent<UnitBrain>().teamCode == tc) { unitlocations.Add(units[x].transform.position.x + units[x].GetComponent<UnitBrain>().viewRange * 3); }
         }
 
         unitlocations.Sort();

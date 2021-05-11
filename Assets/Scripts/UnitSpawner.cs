@@ -9,18 +9,28 @@ public class UnitSpawner : MonoBehaviour
     public GameObject moneyText;
     public string team = "A";
 
+
+    currency Currency;
+
+    private void Start()
+    {
+       Currency = moneyText.GetComponent<currency>();
+    }
     public void Miner()
     { 
+        
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.miner);
-        moneyText.GetComponent<currency>().subtractMoney(50);
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-40, Random.Range(-10f, 10f)));
+        Currency.subtractMoney(50);
     }
     public void Scout()
     {
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.scout);
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-40, Random.Range(-10f, 10f)));
         moneyText.GetComponent<currency>().subtractMoney(75);
     }
     public void Archer()
@@ -28,6 +38,7 @@ public class UnitSpawner : MonoBehaviour
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.archer);
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-40, Random.Range(-10f, 10f)));
         moneyText.GetComponent<currency>().subtractMoney(150);
     }
     public void Knight()
@@ -35,6 +46,7 @@ public class UnitSpawner : MonoBehaviour
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.knight);
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-40, Random.Range(-10f, 10f)));
         moneyText.GetComponent<currency>().subtractMoney(150);
     }
     public void Tank()
@@ -42,7 +54,7 @@ public class UnitSpawner : MonoBehaviour
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.tank);
-        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-30f,0f));
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-40, Random.Range(-10f, 10f)));
         moneyText.GetComponent<currency>().subtractMoney(300);   
     }
     public void Giant()
@@ -50,6 +62,7 @@ public class UnitSpawner : MonoBehaviour
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.giant);
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-40, Random.Range(-10f, 10f)));
         moneyText.GetComponent<currency>().subtractMoney(700);
     }
 

@@ -348,7 +348,7 @@ public class UnitBrain : MonoBehaviour
                     attackRange = 0;
                     attackTime = 0;
                     attackDamage = 0;
-                    health.maxHealth = 100;
+                    health.maxHealth = 1000;
                     unitMovement.speed = 0;
                     health.health = health.maxHealth;
                     sr.sprite = icons[8];

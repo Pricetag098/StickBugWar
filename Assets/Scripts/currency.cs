@@ -10,7 +10,10 @@ public class currency : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moneyText.text = "$" + money;
+        if (moneyText != null)
+        {
+            moneyText.text = "$" + money;
+        }
     }
 
     // Update is called once per frame
@@ -21,7 +24,11 @@ public class currency : MonoBehaviour
     public void addMoney(int moneyToAdd)
     {
         money += moneyToAdd;
-        moneyText.text = "$" + money;
+        if(moneyText != null)
+        {
+            moneyText.text = "$" + money;
+        }
+        
     }
 
     public void subtractMoney(int moneyToSubtract)
@@ -33,7 +40,10 @@ public class currency : MonoBehaviour
         else
         {
             money -= moneyToSubtract;
-            moneyText.text = "$" + money;
+            if (moneyText != null)
+            {
+                moneyText.text = "$" + money;
+            }
         }
     }
 }
