@@ -11,20 +11,23 @@ public class EnemyUnitSpawn : MonoBehaviour
     private string team = "B"; 
     public Vector3 enemyBaseLocation = new Vector3(35,0,0);
     //currency
-    public static int EnemyCurrency = 400;
+    public int EnemyCurrency = 400;
+    private int selector;
     public void Miner()
     { 
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.miner);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(40,Random.Range(-10f,10f))); 
+        EnemyCurrency -= 50;
     }
     public void Scout()
     {
         GameObject unitInstance;
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.scout);
-        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f));
+        EnemyCurrency -= 75; 
     }
     public void Archer()
     {
@@ -32,6 +35,7 @@ public class EnemyUnitSpawn : MonoBehaviour
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.archer);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        EnemyCurrency -= 150;
     }
     public void Knight()
     {
@@ -39,6 +43,7 @@ public class EnemyUnitSpawn : MonoBehaviour
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.knight);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        EnemyCurrency -= 150;
     }
     public void Tank()
     {
@@ -46,6 +51,7 @@ public class EnemyUnitSpawn : MonoBehaviour
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.tank);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        EnemyCurrency -= 300;
     }
     public void Giant()
     {
@@ -53,20 +59,65 @@ public class EnemyUnitSpawn : MonoBehaviour
         unitInstance = Instantiate(unitDefault, enemyBaseLocation, Quaternion.identity) as GameObject;
         unitInstance.GetComponent<UnitBrain>().Innit(team,UnitBrain.Classes.tank);
         unitInstance.GetComponent<UnitBrain>().onOrder(new Vector2(-45f,0f)); 
+        EnemyCurrency -= 700;
     }
     
     public void SendWave()
     {
-        //EnemyUnits = {};
-        foreach (GameObject Unit in GameObject.FindGameObjectsWithTag("Unit"))
+        Debug.Log(EnemyCurrency);
+        Dictionary<UnitBrain.Classes, int> EnemyUnits = new Dictionary<UnitBrain.Classes, int>()
         {
+            {UnitBrain.Classes.miner, 0},
+            {UnitBrain.Classes.scout, 0},
+            {UnitBrain.Classes.knight, 0},
+            {UnitBrain.Classes.archer, 0},
+            {UnitBrain.Classes.tank, 0},
+            {UnitBrain.Classes.giant, 0}
+        };
+
+        foreach (GameObject Unit in GameObject.FindGameObjectsWithTag("Unit")) {
+
             if (Unit.GetComponent<UnitBrain>().teamCode == "B")
             {
-                Debug.Log("Found a enemy unit");
+                if (EnemyUnits.ContainsKey(Unit.GetComponent<UnitBrain>().unitClass))
+                {
+                    EnemyUnits[Unit.GetComponent<UnitBrain>().unitClass] += 1;
+                }
+            }
+            Debug.Log(EnemyUnits);
+        }
+        if (EnemyUnits[UnitBrain.Classes.miner] < 3)
+        {
+            Miner();
+        }
+        if (EnemyCurrency >= 700)
+        {
+            Giant();
+        }
+        if (EnemyCurrency >= 300)
+        {
+            selector = Random.Range(0,3);
+            Debug.Log("Selector:" + selector);
+            if (selector == 0)
+            {
+                Archer();
+                Archer();
+            }
+            if (selector == 1)
+            {
+                Archer();
+                Knight();
+            }
+            if (selector == 2)
+            {
+                Knight();
+                Knight();
+            }
+            if (selector == 3)
+            {
+                Tank();
             }
         }
-        
-        
         waveLength = 10;
         StartCoroutine("WaveCounter",waveLength);
     }

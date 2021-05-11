@@ -305,7 +305,7 @@ public class UnitBrain : MonoBehaviour
                 }
             case Classes.tower:
                 {
-                    viewRange = 3;
+                    viewRange = 0;
                     attackRange = 0;
                     attackTime = 0;
                     attackDamage = 0;
