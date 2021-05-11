@@ -103,7 +103,7 @@ public class UnitBrain : MonoBehaviour
                             {
                                 
                                 Health tHealth = target.GetComponent<Health>();
-                                tHealth.onTakeDmg(attackDamage);
+                                tHealth.onTakeDmg(attackDamage,teamCode);
                                 attackTimer = attackTime;
                                 onAttack();
                                 //print("Attack");

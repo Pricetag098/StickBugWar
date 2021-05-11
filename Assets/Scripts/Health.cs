@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     {
         sr.color = hpGradient.Evaluate(health / maxHealth);
     }
-    public void onTakeDmg(float dmg)
+    public void onTakeDmg(float dmg, string tc)
     {
         health -= dmg;
         if(health <= 0) { onDeath(); }
@@ -24,7 +24,9 @@ public class Health : MonoBehaviour
         sr.color = hpGradient.Evaluate(health / maxHealth);
         if (isOre)
         {
-            tower.addMoney((int)dmg * 50);
+            if(tc == "A") { tower.addMoney((int)dmg * 50); }
+            else { GameObject.FindGameObjectWithTag("EnemyTower").GetComponent<EnemyUnitSpawn>().EnemyCurrency += (int)dmg * 50; }
+            
         }
     }
     public void onDeath()

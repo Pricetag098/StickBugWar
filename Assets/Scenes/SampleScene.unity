@@ -3408,9 +3408,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BSide
       objectReference: {fileID: 0}
+    - target: {fileID: 3706062483264785904, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: m_TagString
+      value: EnemyTower
+      objectReference: {fileID: 0}
     - target: {fileID: 5114245075756236857, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
       propertyPath: teamCode
       value: B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5114245075756236860, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: m_TagString
+      value: EnemyTower
       objectReference: {fileID: 0}
     - target: {fileID: 5114245075756236863, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
       propertyPath: m_BodyType
