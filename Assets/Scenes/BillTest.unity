@@ -1046,6 +1046,10 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1370668332}
+    - target: {fileID: 800322972, guid: de7568ebafe884df6962920e87418099, type: 3}
+      propertyPath: enemyBaseLocation.x
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 1164675423107188514, guid: de7568ebafe884df6962920e87418099, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1132,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251ed8ac6e3954eb3ab14575ba8b9360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveLength: 5
+  waveLength: 10
   unitDefault: {fileID: 8579355808290735262, guid: 719f1e8601fed4e62a325c64a44f7f83, type: 3}
   enemyBaseLocation: {x: 40, y: 0, z: 0}
   EnemyCurrency: 400
@@ -1843,6 +1847,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969371961}
   m_CullTransparentMesh: 1
+--- !u!1 &1053943335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053943337}
+  - component: {fileID: 1053943336}
+  m_Layer: 0
+  m_Name: HealthChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1053943336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053943335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2233c17d29dc34668b9cc1aeba3b93d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TowerA: {fileID: 778241587}
+  TowerB: {fileID: 625223987}
+--- !u!4 &1053943337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053943335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 346.4116, y: -87.4606, z: -297.07278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140023434
 GameObject:
   m_ObjectHideFlags: 0
