@@ -10,6 +10,7 @@ public class currency : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        money = 500;
         if (moneyText != null)
         {
             moneyText.text = "$" + money;

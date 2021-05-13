@@ -1024,6 +1024,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610257110}
   m_CullTransparentMesh: 1
+--- !u!114 &625223987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 677550405475428792, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+  m_PrefabInstance: {fileID: 3723321547929384392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ac848d75de44547bafe67782b3fa6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &672741738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1079,6 +1090,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1164675423107188515, guid: de7568ebafe884df6962920e87418099, type: 3}
+      propertyPath: TowerA
+      value: 
+      objectReference: {fileID: 778241587}
+    - target: {fileID: 1164675423107188515, guid: de7568ebafe884df6962920e87418099, type: 3}
+      propertyPath: TowerB
+      value: 
+      objectReference: {fileID: 625223987}
     - target: {fileID: 1164675423107188524, guid: de7568ebafe884df6962920e87418099, type: 3}
       propertyPath: m_Name
       value: GameManager (2)
@@ -1116,6 +1135,7 @@ MonoBehaviour:
   waveLength: 5
   unitDefault: {fileID: 8579355808290735262, guid: 719f1e8601fed4e62a325c64a44f7f83, type: 3}
   enemyBaseLocation: {x: 40, y: 0, z: 0}
+  EnemyCurrency: 400
 --- !u!1 &677528242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1358,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &778241587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1532089759356017334, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+  m_PrefabInstance: {fileID: 3427189001520718361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ac848d75de44547bafe67782b3fa6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &829742138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3732,5 +3763,9 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1370668334}
+    - target: {fileID: 5114245075756236857, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: teamCode
+      value: B
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}

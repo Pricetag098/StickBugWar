@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     public float health,maxHealth;
 
     public bool isOre;
-    public currency tower;
+    public currency towerCurrency;
     public Gradient hpGradient;
     public SpriteRenderer sr;
 
@@ -24,14 +24,17 @@ public class Health : MonoBehaviour
         sr.color = hpGradient.Evaluate(health / maxHealth);
         if (isOre)
         {
-            if(tc == "A") { tower.addMoney((int)dmg * 50); }
+            if(tc == "A") { towerCurrency.addMoney((int)dmg * 50); }
             else { GameObject.FindGameObjectWithTag("EnemyTower").GetComponent<EnemyUnitSpawn>().EnemyCurrency += (int)dmg * 50; }
             
         }
     }
     public void onDeath()
     {
-        Destroy(gameObject);
+        if (this.gameObject.GetComponent<UnitBrain>().unitClass != UnitBrain.Classes.tower)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

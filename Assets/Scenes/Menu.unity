@@ -797,7 +797,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stick Bug War
+  m_Text: Circle war game in unity3D for the puorpose of appeasing the sace board
 --- !u!222 &1279111653
 CanvasRenderer:
   m_ObjectHideFlags: 0
