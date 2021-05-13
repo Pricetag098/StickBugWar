@@ -600,6 +600,38 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 902902021}
+    - target: {fileID: 4366265048187040910, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+      propertyPath: health
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366265048187040910, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366265048737699546, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+      propertyPath: health
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366265048737699546, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366265049117050295, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+      propertyPath: health
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366265049117050295, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366265049999394481, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+      propertyPath: health
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366265049999394481, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 6360375818472557808, guid: 149c098c41b8ea346aab92e431c105d4, type: 3}
       propertyPath: m_Name
       value: Aside
@@ -3448,18 +3480,50 @@ PrefabInstance:
       propertyPath: tower
       value: 
       objectReference: {fileID: 1098662373}
+    - target: {fileID: 2358797585407522819, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: health
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358797585407522819, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 2358797585974678133, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
       propertyPath: tower
       value: 
       objectReference: {fileID: 1098662373}
+    - target: {fileID: 2358797585974678133, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: health
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358797585974678133, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 2358797586002052896, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
       propertyPath: tower
       value: 
       objectReference: {fileID: 1098662373}
+    - target: {fileID: 2358797586002052896, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: health
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358797586002052896, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 2358797586203048440, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
       propertyPath: tower
       value: 
       objectReference: {fileID: 1098662373}
+    - target: {fileID: 2358797586203048440, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: health
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358797586203048440, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 3706062483264785904, guid: 9058bcfb9bf10bf458295e0877793b18, type: 3}
       propertyPath: m_Name
       value: BSide
