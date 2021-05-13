@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
         if (isOre)
         {
             if(tc == "A") { towerCurrency.addMoney((int)dmg * 50); }
-            else { GameObject.FindGameObjectWithTag("EnemyTower").GetComponent<EnemyUnitSpawn>().EnemyCurrency += (int)dmg * 50; }
+            //else { GameObject.FindGameObjectWithTag("EnemyTower").GetComponent<EnemyUnitSpawn>().EnemyCurrency += (int)dmg * 5; }
             
         }
     }
