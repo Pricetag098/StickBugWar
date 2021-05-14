@@ -12,9 +12,9 @@ public class Menu : MonoBehaviour
     }
     public void PlayFun()
     {
-        if(SceneManager.GetSceneByBuildIndex(buildIndex: 0).isLoaded == false)
+        if(SceneManager.GetSceneByBuildIndex(buildIndex: 1).isLoaded == false)
         {
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
             Debug.Log("Play");
         }
         else
